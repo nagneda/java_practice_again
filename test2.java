@@ -25,11 +25,11 @@ class test2_1 {
 class test2_2 {
     public static void main(String [] args){
         String str = "abcde";
-        System.out.println(str.charAt(2));
-        System.out.println(str.length());
+        System.out.println(str.charAt(2));// 인덱싱
+        System.out.println(str.length()); // 문자열 길이
         System.out.println(str.substring(1,3));//뒤의 인덱스는 슬라이싱에 포함되지 않음
-        System.out.println(str.equals("abcde"));
-        System.out.println(str.toCharArray());
+        System.out.println(str.equals("abcde")); // 괄호안의 문자열과 동일한지 / 대소문자 구분하지 않는 비교 메서드는 따로 있음
+        System.out.println(str.toCharArray()); // char 타입의 배열화
         
         
     }
