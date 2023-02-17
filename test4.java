@@ -127,13 +127,13 @@ class InstanceOfTest {
 }
 
 class Childs extends Parents{
-  
+    
+    
 }
 
 class Parents{
     int x = 100;
     void method(){System.out.println("parents method");}
-    
 }
 
 class BindingTest{
@@ -146,9 +146,89 @@ class BindingTest{
 
         p.method();
         c.method();
+        //원래는 조상클래스와 자손클래스가 같은 이름을 가진 멤버를 가지고 있다면 멤버변수는
+        // 참조변수의 타입에 맞게 출력되고 메서드는 인스턴스 타입에 맞게 출력돼야하지만 
+        //현재 childs클래스에 정의된 멤버가 없기 때문에 선택의 여지가 없어 Parents클래스에서 
+        //변수와 메서드 모두 사용하게 됨.
+    }
+}
+ 
+class Buyer{
+    int money = 1000;
+    int bonuspoint = 0;
+
+    void buy(Product p){// 같은 패키지내에 있기 때문에 클래스끼리 접근 가능하고 그렇기에 Product
+        //클래스에 접근할 수 있는 것. 
+        if(money<p.price){
+            System.out.println(" 잔액이 부족합니다 ");
+            return;
+        }
+        money -= p.price;
+        bonuspoint += (int)(p.price/10);
+        System.out.println("구매하신 물건은"+p+"입니다");
+        System.out.println("현재 잔액은"+money+"입니다");
+        System.out.println("현재 보너스포인트는"+bonuspoint+"입니다");
 
     }
 }
+
+class Product{
+    int price;
+    
+
+    Product(int price){
+        this.price = price;
+    }
+}
+
+class PolyTv extends Product{
+    PolyTv(){
+        super(200);
+    }
+    
+    public String toString(){
+        return "tv";
+    }
+}
+class PolyComputer extends Product{
+    PolyComputer(){
+        super(300);
+    }
+    public String toString(){
+        return "computer";
+    }
+}
+
+class PolyTest{
+    public static void main(String [] args){
+        Buyer b = new Buyer();
+        
+        b.buy(new PolyTv());
+        b.buy(new PolyComputer());
+
+    }
+}
+
+class abc implements abcd{
+
+    public void test1(){// 왜 public이어야 하는가  = 아래의 default는 접근제어자가 아니다
+        System.out.println("this is class's method");
+    }
+}
+
+interface abcd{
+        default void test1(){};
+}
+
+
+
+class impletest{
+    public static void main(String [] args){
+        abc aa = new abc();
+        aa.test1();
+    }
+}
+
 /* 
 
 
